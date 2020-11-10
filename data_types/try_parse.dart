@@ -1,3 +1,4 @@
 void main() {
-  print("test 123");
+  double a = double.tryParse("123") ?? 0.0;
+  int b = int.parse("123", onError: (val) => 0);
 }
