@@ -12,7 +12,7 @@ void main() {
       break;
     default:
       {
-        print("by default");
+        print("wolf");
       }
   }
 }
