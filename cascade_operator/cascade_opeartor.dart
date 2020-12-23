@@ -1,6 +1,7 @@
 class Test {
-  void printname() {
+  int printname() {
     print("paras ");
+    return 4;
   }
 
   void printSirname() {
