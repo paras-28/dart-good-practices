@@ -1,4 +1,4 @@
-mixin Swimming {
+mixin Swimming on Walking {
   void swim() => print("swimming");
 }
 
@@ -6,11 +6,11 @@ class Walking {
   void walk() => print("walking");
 }
 
-class Human with Walking, Swimming {
+class Human extends Walking with Swimming {
   void jump() => print("jumping");
 }
 
 void main() {
   var obj = Human();
-  obj.walk();
+  obj.jump();
 }
