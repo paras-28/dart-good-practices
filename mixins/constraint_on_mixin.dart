@@ -10,7 +10,9 @@ class Human extends Walking with Swimming {
   void jump() => print("jumping");
 }
 
+class Child extends Human {}
+
 void main() {
-  var obj = Human();
-  obj.jump();
+  var obj = Child();
+  obj.walk();
 }
