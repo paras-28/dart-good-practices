@@ -11,7 +11,8 @@ void main() {
   print("check : ${identical(obj, obj2)}"); // false
 
   print("check : ${identical(obj, obj3)}"); // true
+
   int b = 4;
   int c = 4;
-  print("check 2 ${identical(b, c)}");
+  print("check 2 ${identical(b, c)}"); // true
 }

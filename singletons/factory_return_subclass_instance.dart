@@ -1,7 +1,5 @@
 abstract class Player {
-  Player();
-
-  factory Player.named() {
+  factory Player.customNamedConstructor() {
     return TennisPlayer();
   }
   void playerInfo();
