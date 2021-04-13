@@ -1,6 +1,9 @@
 abstract class Cache<T extends num> {}
 
-class LocalCache<T extends num> extends Cache<T> {}
+class LocalCache<T extends num> extends Cache<T> {
+  T obj;
+  LocalCache(this.obj);
+}
 
 class CloudCache<T extends num, K> extends Cache<T> {}
 
