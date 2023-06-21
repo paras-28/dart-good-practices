@@ -1,3 +1,7 @@
+//Info if you define sealed class in this Library(this file)
+//you cant use sealed classes in another file
+// Its almost same as abstract classes
+
 void main() {
   Animal animal = Cat();
 
