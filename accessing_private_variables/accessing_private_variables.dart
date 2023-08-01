@@ -2,7 +2,7 @@ class Student {
   var _id;
   var _name;
 
-  Student({int id, String name})
+  Student({required id, required String name})
       : _id = id,
         _name = name;
 
