@@ -12,7 +12,7 @@ void main() {
 
   var newList3 = [...originalList]; // List<int>
   var newList4 = [for (var v in originalList) v]; // List<int>
-  List<int> list5 = originalList;
+  List<int> list5 = originalList.toList();
   list5.add(5);
   originalList.add(6);
   //Prefered way to copy for faster performance
@@ -28,75 +28,4 @@ void main() {
   var c = List<int>.from(originalList2); // return List<int>
   print(listOfListFrom.runtimeType);
   print(c.runtimeType);
-
-//______________________________________________________________________________
-//Info method 1 to get duplicate list
-  List<CustomModel> duplicateList = [];
-  duplicateList = List.from(customModelsList);
-}
-
-abstract class ParentOfCustomModel {
-  Map<String, dynamic> toMap();
-}
-
-class CustomModel implements ParentOfCustomModel {
-  String? name;
-  int? id;
-  String? birthdate;
-
-  CustomModel({
-    this.name,
-    this.id,
-    this.birthdate,
-  });
-
-  CustomModel copyWith({
-    String? name,
-    int? id,
-    String? birthdate,
-  }) {
-    return CustomModel(
-      name: name ?? this.name,
-      id: id ?? this.id,
-      birthdate: birthdate ?? this.birthdate,
-    );
-  }
-
-  @override
-  Map<String, dynamic> toMap() {
-    return {
-      'name': this.name,
-      'id': this.id,
-      'birthdate': this.birthdate,
-    };
-  }
-}
-
-List<CustomModel> customModelsList = [
-  CustomModel(
-    name: "John",
-    id: 1,
-    birthdate: DateTime(1990, 5, 15).toIso8601String(),
-  ),
-  CustomModel(
-    name: "Alice",
-    id: 2,
-    birthdate: DateTime(1985, 9, 28).toIso8601String(),
-  ),
-  CustomModel(
-    name: "Bob",
-    id: 3,
-    birthdate: DateTime(2000, 3, 10).toIso8601String(),
-  ),
-  // Add more instances as needed
-];
-
-printResult(List<ParentOfCustomModel> list, String tag) {
-  print(
-      "________________________________________________________________________________");
-  print(tag);
-  for (ParentOfCustomModel obj in list) {
-    int index = list.indexOf(obj);
-    print("At $index : ${obj.toMap()}");
-  }
 }
