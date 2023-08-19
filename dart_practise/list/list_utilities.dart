@@ -1,33 +1,32 @@
+import 'dart:html';
+
 void main() {
-  // this method of copying fail it affects both list as well
-  List<School> duplicateList1 = List.from(originalList);
-  // duplicateList1[0].listOfFacilities = ["Facility1", "facility2"];
-  duplicateList1[0].id = 98763;
+  // return type void this funtion goes at every element and gives an oppotunity
+  // to perfom an action at every step
+  originalList.forEach((element) {
+    print(element.name);
+  });
+// _____________________________________________________________________________
 
-  printResult(duplicateList1, "duplicate List");
-  printResult(originalList, "original List");
+// List<String>
+// its return type is iterable in order to make list we have to type cast it by .toList()
+// Iterable is unidirectional , it basically goes step by step
+// we basically use this to generate new list of different type
+  List<String> listOFNames =
+      originalList.map((e) => e.name.toString()).toList();
+  print(listOFNames.runtimeType);
 
-//Info method 1 this method is for when you nested list
-// means we have a list of Custom and in that customModel we have list
-  List<School> duplicateList = originalList.map((e) {
-    return School(
-        id: e.id,
-        listOfFacilities: e.listOfFacilities,
-        listOfStudents: e.listOfStudents,
-        name: e.name);
+//______________________________________________________________________________
+  List<School> list3 = originalList.where((element) {
+    return element.name.toString() == "ABC School";
   }).toList();
 
-  List<Student> a = [
-    Student(hobbies: ["chess", "Table Tenis"], id: 567, name: "Rohit"),
-    Student(hobbies: ["chess", "Voleyball"], id: 537, name: "Mukesh"),
-  ];
-  duplicateList[0].listOfStudents = a
-      .map((e) => Student(hobbies: e.hobbies, id: e.id, name: e.name))
-      .toList();
-  // originalList[0].listOfFacilities = ["Facility1", "facility2"];
+  printResult(list3, "where method: ");
 
-  // printResult(duplicateList, "duplicate List");
-  // printResult(originalList, "original List");
+//______________________________________________________________________________
+//  return Type bool
+  bool isContain = originalList.contains(School());
+//______________________________________________________________________________
 }
 
 List<School> originalList = [
@@ -107,15 +106,15 @@ class School implements ParentOfCustomModel {
   //     listOfFacilities.hashCode ^
   //     listOfStudents.hashCode;
 
-  // @override
-  // String toString() {
-  //   return 'School{' +
-  //       ' id: $id,' +
-  //       ' name: $name,' +
-  //       ' listOfFacilities: $listOfFacilities,' +
-  //       ' listOFStudents: $listOfStudents,' +
-  //       '}';
-  // }
+  @override
+  String toString() {
+    return 'School{' +
+        ' id: $id,' +
+        ' name: $name,' +
+        ' listOfFacilities: $listOfFacilities,' +
+        ' listOFStudents: $listOfStudents,' +
+        '}';
+  }
 
   School copyWith({
     int? id,

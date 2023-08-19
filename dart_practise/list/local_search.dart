@@ -9,12 +9,26 @@ void main() {
 
   String searchKey = "John";
 
-// Info search particular key
+// Info search particular key good practise
   List<CustomModel> result1 = customModelsList.where((element) {
     return element.name!.toLowerCase().contains(searchKey.toLowerCase());
   }).toList();
 
   printResult(result1, "Info search particular key");
+
+//Bad practise
+  List<CustomModel?> result2 = customModelsList.map((e) {
+    if (e.name == "John") {
+      return e;
+    } else {
+      null;
+    }
+  }).toList();
+
+  result2.forEach((element) {
+    print("map method ${element?.name.toString()}");
+  });
+
 // _____________________________________________________________________________________
 //Info sort from a to Z
   duplicateList.sort((a, b) {
@@ -23,6 +37,10 @@ void main() {
 
   printResult(duplicateList, "Info sort from a to Z");
 
+//Result
+// map method John
+// map method null
+// map method null
 //______________________________________________________________________________________
   //Info sort from z to a
   duplicateList.sort((b, a) {
