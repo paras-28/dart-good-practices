@@ -1,9 +1,33 @@
 void main() {
-  List<School> duplicateList = List.from(originalList);
-  duplicateList.removeAt(0);
+  // this method of copying fail it affects duplicate list as well
+  List<School> duplicateList1 = List.from(originalList);
+  // duplicateList1[0].listOfFacilities = ["Facility1", "facility2"];
+  duplicateList1[0].id = 98763;
 
-  printResult(duplicateList, "duplicate List");
+  printResult(duplicateList1, "duplicate List");
   printResult(originalList, "original List");
+
+//Info method 1 this method is for when you nested list
+// means we have a list of Custom and in that customModel we have list
+  List<School> duplicateList = originalList.map((e) {
+    return School(
+        id: e.id,
+        listOfFacilities: e.listOfFacilities,
+        listOfStudents: e.listOfStudents,
+        name: e.name);
+  }).toList();
+
+  List<Student> a = [
+    Student(hobbies: ["chess", "Table Tenis"], id: 567, name: "Rohit"),
+    Student(hobbies: ["chess", "Voleyball"], id: 537, name: "Mukesh"),
+  ];
+  duplicateList[0].listOfStudents = a
+      .map((e) => Student(hobbies: e.hobbies, id: e.id, name: e.name))
+      .toList();
+  // originalList[0].listOfFacilities = ["Facility1", "facility2"];
+
+  // printResult(duplicateList, "duplicate List");
+  // printResult(originalList, "original List");
 }
 
 List<School> originalList = [
@@ -140,14 +164,14 @@ class Student implements ParentOfCustomModel {
   // @override
   // int get hashCode => id.hashCode ^ name.hashCode ^ hobbies.hashCode;
 
-  // @override
-  // String toString() {
-  //   return 'Student{' +
-  //       ' id: $id,' +
-  //       ' name: $name,' +
-  //       ' hobbies: $hobbies,' +
-  //       '}';
-  // }
+  @override
+  String toString() {
+    return 'Student{' +
+        ' id: $id,' +
+        ' name: $name,' +
+        ' hobbies: $hobbies,' +
+        '}';
+  }
 
   Student copyWith({
     int? id,
