@@ -2,11 +2,38 @@ void main() {
   List<String> stringList = ['Apple', 'Banana', 'Orange', 'Grapes'];
   String a = stringList.reduce((value, element) => "$value" + ', ' + element);
   print(a); // Apple, Banana, Orange, Grapes
+
+  //Info .map().toList() makes a list of intergers and then reduce method caluate the total price and
+  // we know reduce method return type is List<Item> type
   int? totalprice = itemList
       .map((e) => e.price)
       .toList()
       .reduce((value, element) => value! + element!);
   print("total price is ${totalprice}");
+
+  // Method 2
+  // Info working takes firstElement and secondElement perform some action
+  // and result will be the the next action firstElement
+  Item result = itemList.reduce((firstElement, secondElement) => Item(
+      price: firstElement.price! + secondElement.price!,
+      id: secondElement.id,
+      name: firstElement.name));
+
+  print("result is ${result}");
+
+// fold method
+  // int totalpriceOfFoldMethod =
+  int total = itemList.fold(0, (int previousValue, Item item) {
+    return previousValue + (item.price ?? 0);
+  });
+
+  Item total2 = itemList.fold(Item(id: 10, name: "v", price: 25),
+      (Item previousValue, Item item) {
+    return Item(price: previousValue.price! + item.price!);
+  });
+
+  print(total);
+  print(total2);
 }
 
 List<Item> itemList = [
