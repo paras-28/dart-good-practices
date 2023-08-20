@@ -1,5 +1,3 @@
-import 'dart:html';
-
 void main() {
   // return type void this funtion goes at every element and gives an oppotunity
   // to perfom an action at every step
@@ -23,9 +21,41 @@ void main() {
 
   printResult(list3, "where method: ");
 
+// single where check the search key is present and if mltiple element found with same it throws the error
+
+  School list4 = originalList.singleWhere((element) {
+    return element.name.toString() == "ABC School";
+  }, orElse: () => School());
+
+  printResult(list3, "where method: ");
+
 //______________________________________________________________________________
 //  return Type bool
   bool isContain = originalList.contains(School());
+//______________________________________________________________________________
+// Every method
+// return type bool
+  bool result = originalList.every((element) => element.id! >= 1);
+  print("every mrthod $result");
+//______________________________________________________________________________
+// any method
+// return type bool
+  bool result2 = originalList.any((element) => element.id! >= 1);
+  print("aby mrthod $result2");
+
+//______________________________________________________________________________
+// single where
+// return type bool
+  School result3 = originalList
+      .singleWhere((element) => element.name!.contains("ABC School"));
+  print(" single where $result3");
+//______________________________________________________________________________
+// expand
+// return type bool
+  var result4 = originalList.expand((element) {
+    return [element.name! + "Arora"];
+  }).toList();
+  print("expand $result4");
 //______________________________________________________________________________
 }
 
